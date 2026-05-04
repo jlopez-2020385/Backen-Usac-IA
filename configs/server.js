@@ -1,5 +1,6 @@
 "use strict";
 
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -66,14 +67,18 @@ const conectarDB = async () => {
   }
 };
 
-export const initServer = () => {
+export const initServer = async () => {
   try {
     middlewares(app);
-    conectarDB();
+
+    await conectarDB(); // ✅ ahora sí funciona
+
     routes(app);
+
     server.listen(process.env.PORT, () => {
       console.log(`Server running on port ${process.env.PORT}`);
     });
+
   } catch (err) {
     console.log(`Server init failed: `, err);
   }

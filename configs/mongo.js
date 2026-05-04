@@ -30,6 +30,6 @@ export const dbConnection = async () => {
         })
         
     }catch(err){
-        console.log('Database connection failled: ${err}')
+        console.log(`Database connection failed: ${err}`)
     }
 }
